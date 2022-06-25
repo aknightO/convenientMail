@@ -45,15 +45,15 @@ public class SendMailAction implements ActionListener{
             System.out.println("创建文件分片文件夹为：" + sliceFilePath);
 
             //5.测试文件合并
-            String glueDir = "/Users/sy_mbp/Desktop/sjsj/";
-            String glueAfterAbsoluteFilePath = FileSliceAndGlue.glue(sliceFilePath, glueDir);
-            this.tf.jta.append("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
-            System.out.println("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
-
-            //6.把合并好的文件进行解压缩
-            boolean unZipIsSuccess = ZipUtils.unzip(glueAfterAbsoluteFilePath,glueDir);
-            this.tf.jta.append("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
-            System.out.println("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
+//            String glueDir = "/Users/sy_mbp/Desktop/sjsj/";
+//            String glueAfterAbsoluteFilePath = FileSliceAndGlue.glue(sliceFilePath, glueDir);
+//            this.tf.jta.append("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
+//            System.out.println("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
+//
+//            //6.把合并好的文件进行解压缩
+//            boolean unZipIsSuccess = ZipUtils.unzip(glueAfterAbsoluteFilePath,glueDir);
+//            this.tf.jta.append("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
+//            System.out.println("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
 
             //3.删除本地分片文件夹
             boolean deleteFileDirIsSuccess = DirDelete.delFolder(sliceFilePath);

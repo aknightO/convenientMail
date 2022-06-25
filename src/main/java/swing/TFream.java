@@ -52,7 +52,7 @@ public class TFream {
         jtf3.setText("");
         jp1.add(authorizationCode);jp1.add(jtf3);
         //第四行
-        otherQQAccount = new JLabel("otherQQAccount:");
+        otherQQAccount = new JLabel("otherAccount:");
         otherQQAccount.setHorizontalAlignment(SwingConstants.CENTER);
         jtf4 = new JTextField(15);
         jtf3.setText("");

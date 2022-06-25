@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="convenientMail-out:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/convenientMail_out_jar</output-path>
+    <root id="archive" name="convenientMail-out.jar">
+      <element id="module-output" name="convenientMail-out" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/MAVEN/apache-maven-3.8.4/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Documents/MAVEN/apache-maven-3.8.4/repository/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+      <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
+    </root>
+  </artifact>
+</component>

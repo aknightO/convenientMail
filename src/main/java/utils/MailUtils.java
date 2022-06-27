@@ -64,8 +64,12 @@ public class MailUtils {
             //指明邮件的收件人，现在发件人和收件人是一样的，就是自己给自己发
             message.setRecipient(Message.RecipientType.TO , new InternetAddress(sendMailVO.getOtherSendEmailAccount(),
                     "yue.sun","UTF-8"));
-            //邮件标题
-            message.setSubject(fileName.substring(fileName.lastIndexOf("/")+1,fileName.lastIndexOf(".parts")));
+            //邮件标题(存在没有分割的时候)
+            if (fileName.contains(".parts")){
+                message.setSubject(fileName.substring(fileName.lastIndexOf("/")+1,fileName.lastIndexOf(".parts")));
+            }else {
+                message.setSubject(fileName);
+            }
             message.setContent(fileName,"text/html;charset=UTF-8");
             // 创建附件“附件节点”
             MimeBodyPart attachment = new MimeBodyPart();

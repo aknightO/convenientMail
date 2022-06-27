@@ -35,11 +35,16 @@ public class SendMailAction implements ActionListener{
 
             //1.输入的文件需要先进行压缩为.zip文件
             String filepath = sourceFilePath;
-            String zipFilePath = filepath.substring(0, filepath.lastIndexOf(".")) + ".zip";
-            FileOutputStream zipFileOpt = new FileOutputStream(new File(zipFilePath));
-            ZipUtils.toZip(filepath, zipFileOpt,this.tf.jta);
-            this.tf.jta.append("step2:创建压缩文件地址为：" + zipFilePath);
-            System.out.println("step2:创建压缩文件地址为：" + zipFilePath);
+            String zipFilePath = "";
+            if(!sourceFilePath.endsWith(".zip")){
+                zipFilePath = filepath.substring(0, filepath.lastIndexOf(".")) + ".zip";
+                FileOutputStream zipFileOpt = new FileOutputStream(new File(zipFilePath));
+                ZipUtils.toZip(filepath, zipFileOpt,this.tf.jta);
+                this.tf.jta.append("step2:创建压缩文件地址为：" + zipFilePath);
+                System.out.println("step2:创建压缩文件地址为：" + zipFilePath);
+            }else{
+                zipFilePath = filepath;
+            }
 
             //2.获取压缩文件地址，然后通过压缩分片文件并通过邮件发送
             //如果文件没有大于19M，那么将不会进行分片，只会进行压缩

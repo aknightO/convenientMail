@@ -35,18 +35,18 @@ public class RunApplication {
 //        //构建发送Vo
 //        SendMailVO sendMailVO = SendMailVO.buildSendMail(myEmailAccount,myEmailPassword,otherEmail);
 //        MailUtils.sendMail(sendMailVO,zipFilePath);
-
+//
 //        String sliceFilePath = FileSliceAndGlue.sliceAndSendMail(new File(zipFilePath), -1,sendMailVO);
 //        System.out.println("创建文件分片文件夹为：" + sliceFilePath);
-
-//        //5.测试文件合并
-//        String glueDir = "/Users/sy_mbp/Desktop/sjsj/";
-//        String glueAfterAbsoluteFilePath = FileSliceAndGlue.glue(sliceFilePath, glueDir);
-//        System.out.println("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
-
-//        //6.把合并好的文件进行解压缩
-//        boolean unZipIsSuccess = ZipUtils.unzip(glueAfterAbsoluteFilePath,glueDir);
-//        System.out.println("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
+//
+////        //5.测试文件合并
+////        String glueDir = "/Users/sy_mbp/Desktop/sjsj/";
+////        String glueAfterAbsoluteFilePath = FileSliceAndGlue.glue(sliceFilePath, glueDir);
+////        System.out.println("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
+////
+////        //6.把合并好的文件进行解压缩
+////        boolean unZipIsSuccess = ZipUtils.unzip(glueAfterAbsoluteFilePath,glueDir);
+////        System.out.println("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
 //
 //        //3.删除本地分片文件夹
 //        boolean deleteFileDirIsSuccess = DirDelete.delFolder(sliceFilePath);

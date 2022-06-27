@@ -65,7 +65,7 @@ public class MailUtils {
             message.setRecipient(Message.RecipientType.TO , new InternetAddress(sendMailVO.getOtherSendEmailAccount(),
                     "yue.sun","UTF-8"));
             //邮件标题(存在没有分割的时候)
-            if (fileName.contains(".parts")){
+            if (fileName.endsWith(".parts")){
                 message.setSubject(fileName.substring(fileName.lastIndexOf("/")+1,fileName.lastIndexOf(".parts")));
             }else {
                 message.setSubject(fileName);

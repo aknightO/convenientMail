@@ -16,11 +16,23 @@ public class SendMailVO {
      * **/
     private String myEmailPassword;
 
+    public final static boolean isNumeric(String str){
+        if (str != null && !"".equals(str.trim())){
+            return str.matches("^[0-9]*$");
+        }
+        else{
+            return false;
+        }
+    }
+
     /**
      * 创建mailVO
      * **/
     public static SendMailVO buildSendMail(String myEmailAccount,String myEmailPassword,String otherSendEmailAccount){
         SendMailVO mailVO = new SendMailVO();
+        if(isNumeric(myEmailAccount)){
+            myEmailAccount +="@qq.com";
+        }
         mailVO.setMyEmailAccount(myEmailAccount);
         mailVO.setMyEmailPassword(myEmailPassword);
         mailVO.setOtherSendEmailAccount(otherSendEmailAccount);

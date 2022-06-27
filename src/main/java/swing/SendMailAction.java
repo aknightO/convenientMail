@@ -74,6 +74,11 @@ public class SendMailAction implements ActionListener{
                 System.out.println("文件小于19M，文件名称：["+zipFilePath+"]发送是否成功？" +
                         (sendSuccess?"   Success   ":"   Fail   "));
             }
+
+            //如果本身就是.zip文件不需要删除
+            if (filepath.endsWith(".zip")){
+                return;
+            }
             //4.删除本地压缩zip文件
             boolean deleteZipFileIsSuccess = new File(zipFilePath).delete();
             this.tf.jta.append("step4:删除本地zip文件是否成功？" + (deleteZipFileIsSuccess ? "   Success   " : "   Fail   "));

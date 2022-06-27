@@ -26,7 +26,7 @@ public class FileSliceAndGlue {
          *  默认19M
          */
         if (filePieceSize == -1) {
-            filePieceSize = 1024 * 1024 * 10;
+            filePieceSize = 1024 * 1024 * 19;
         }
         int howManyParts = calcParts(file.length(), filePieceSize);
         FileInputStream inputStream = null;

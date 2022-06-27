@@ -60,7 +60,7 @@ public class TFream {
         jp1.add(jtf4);
         frame.add(jp1);
         //第五行加入滚动条
-        jta=new JTextArea("Log:",6,30);
+        jta=new JTextArea("LogAndTips:输入文件为绝对路径必须为'/'，授权码获取获取地址：https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256，如果文件没有大于19M，那么将不会进行分片，只会进行压缩",6,30);
         jta.setEditable(false);
         jta.setTabSize(4);
         jta.setFont(new Font("标楷体", Font.BOLD, 10));

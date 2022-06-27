@@ -3,6 +3,7 @@ package swing;
 import domian.SendMailVO;
 import file.DirDelete;
 import file.FileSliceAndGlue;
+import utils.MailUtils;
 import utils.ZipUtils;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ import java.io.FileOutputStream;
  * **/
 public class SendMailAction implements ActionListener{
     TFream tf = null;
+    private static final Long fileSize19M = 1024 * 1024 * 19L;
     public SendMailAction(TFream tf){
         this.tf = tf;
     }
@@ -40,11 +42,14 @@ public class SendMailAction implements ActionListener{
             System.out.println("step2:创建压缩文件地址为：" + zipFilePath);
 
             //2.获取压缩文件地址，然后通过压缩分片文件并通过邮件发送
-            String sliceFilePath = FileSliceAndGlue.sliceAndSendMail(new File(zipFilePath), -1,sendMailVO);
-            this.tf.jta.append("创建文件分片文件夹为：" + sliceFilePath);
-            System.out.println("创建文件分片文件夹为：" + sliceFilePath);
+            //如果文件没有大于19M，那么将不会进行分片，只会进行压缩
+            File zipFile = new File(zipFilePath);
+            if(zipFile.length() >= fileSize19M){
+                String sliceFilePath = FileSliceAndGlue.sliceAndSendMail(zipFile, -1,sendMailVO);
+                this.tf.jta.append("创建文件分片文件夹为：" + sliceFilePath+"发送分片文件到邮箱成功！");
+                System.out.println("创建文件分片文件夹为：" + sliceFilePath);
 
-            //5.测试文件合并
+                //5.测试文件合并
 //            String glueDir = "/Users/sy_mbp/Desktop/sjsj/";
 //            String glueAfterAbsoluteFilePath = FileSliceAndGlue.glue(sliceFilePath, glueDir);
 //            this.tf.jta.append("step5:合并后文件夹绝对路径为：" + glueAfterAbsoluteFilePath);
@@ -55,11 +60,15 @@ public class SendMailAction implements ActionListener{
 //            this.tf.jta.append("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
 //            System.out.println("step6:解压zip文件夹是否成功？" + (unZipIsSuccess ? "   Success   " : "   Fail   "));
 
-            //3.删除本地分片文件夹
-            boolean deleteFileDirIsSuccess = DirDelete.delFolder(sliceFilePath);
-            this.tf.jta.append("step3:删除本地分片文件夹是否成功？" + (deleteFileDirIsSuccess ? "   Success   " : "   Fail   "));
-            System.out.println("step3:删除本地分片文件夹是否成功？" + (deleteFileDirIsSuccess ? "   Success   " : "   Fail   "));
-
+                //3.删除本地分片文件夹
+                boolean deleteFileDirIsSuccess = DirDelete.delFolder(sliceFilePath);
+                this.tf.jta.append("step3:删除本地分片文件夹是否成功？" + (deleteFileDirIsSuccess ? "   Success   " : "   Fail   "));
+                System.out.println("step3:删除本地分片文件夹是否成功？" + (deleteFileDirIsSuccess ? "   Success   " : "   Fail   "));
+            }else{
+                boolean sendSuccess = MailUtils.sendMail(sendMailVO,zipFilePath);
+                System.out.println("文件小于19M，文件名称：["+zipFilePath+"]发送是否成功？" +
+                        (sendSuccess?"   Success   ":"   Fail   "));
+            }
             //4.删除本地压缩zip文件
             boolean deleteZipFileIsSuccess = new File(zipFilePath).delete();
             this.tf.jta.append("step4:删除本地zip文件是否成功？" + (deleteZipFileIsSuccess ? "   Success   " : "   Fail   "));
